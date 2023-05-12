@@ -18,10 +18,10 @@
   <description>poc-hexagonal</description>
 
   <scm>
-    <url>https://github.com/ricksouzaa/poc-hexagonal</url> <!-- URL HTTP de clone do projeto -->
-    <connection>scm:git:https://github.com/ricksouzaa/poc-hexagonal</connection> <!-- URL HTTP de clone do projeto -->
-    <developerConnection>scm:git:https://github.com/ricksouzaa/poc-hexagonal</developerConnection> <!-- URL HTTP de clone do projeto -->
-    <tag>0.0.1.Final</tag>
+    <url>git@github.com:ricksouzaa/poc-hexagonal.git</url> <!-- URL HTTP de clone do projeto -->
+    <connection>scm:git:git@github.com:ricksouzaa/poc-hexagonal.git</connection> <!-- URL HTTP de clone do projeto -->
+    <developerConnection>scm:git:git@github.com:ricksouzaa/poc-hexagonal.git</developerConnection> <!-- URL HTTP de clone do projeto -->
+    <tag>@{project.version}</tag>
   </scm>
 
   <properties>
