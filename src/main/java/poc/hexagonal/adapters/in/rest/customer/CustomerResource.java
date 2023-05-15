@@ -40,16 +40,14 @@ public class CustomerResource {
   private final CustomerResourceMapper customerResourceMapper;
 
   @PostMapping
-  public ResponseEntity<Void> create(@RequestBody @Valid CustomerRequest customerRequest)
-      throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
+  public ResponseEntity<Void> create(@RequestBody @Valid CustomerRequest customerRequest) throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
     Customer customer = customerResourceMapper.toModel(customerRequest);
     customerServicePort.save(customer);
     return status(CREATED).build();
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Void> update(@PathVariable String id, @RequestBody @Valid CustomerRequest customerRequest)
-      throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
+  public ResponseEntity<Void> update(@PathVariable String id, @RequestBody @Valid CustomerRequest customerRequest) throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
     try {
       customerServicePort.findById(id);
       Customer customer = customerResourceMapper.toModel(customerRequest);

@@ -1,7 +1,6 @@
 package poc.hexagonal.adapters.out.clients.viacep.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
 
 @Data

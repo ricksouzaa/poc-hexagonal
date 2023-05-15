@@ -12,8 +12,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
-public class AddressLocatorAdapter
-    implements AddressLocatorPort {
+public class AddressLocatorAdapter implements AddressLocatorPort {
 
   private final ViaCepRestClient    viaCepRestClient;
   private final ViaCepAddressMapper viaCepAddressMapper;
@@ -25,9 +24,9 @@ public class AddressLocatorAdapter
                                                         .map(viaCepAddressMapper::toModel);
 
     return optionalAddress.map(address -> {
-                            address.setZipCode(address.getZipCode()
-                                                      .replace("-", ""));
-                            return address;
-                          });
+      address.setZipCode(address.getZipCode()
+                                .replace("-", ""));
+      return address;
+    });
   }
 }
