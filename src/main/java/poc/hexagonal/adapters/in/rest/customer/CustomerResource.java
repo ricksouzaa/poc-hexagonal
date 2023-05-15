@@ -1,13 +1,7 @@
 package poc.hexagonal.adapters.in.rest.customer;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.ResponseEntity.noContent;
-import static org.springframework.http.ResponseEntity.notFound;
-import static org.springframework.http.ResponseEntity.ok;
-import static org.springframework.http.ResponseEntity.status;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -19,9 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import poc.hexagonal.adapters.in.rest.customer.dtos.request.CustomerRequest;
 import poc.hexagonal.adapters.in.rest.customer.dtos.response.CustomerResponse;
 import poc.hexagonal.adapters.in.rest.customer.mappers.CustomerResourceMapper;
@@ -33,6 +24,13 @@ import poc.hexagonal.application.core.domain.customer.exceptions.InvalidZipCodeE
 import poc.hexagonal.application.core.domain.customer.models.Customer;
 import poc.hexagonal.application.core.domain.customer.ports.in.CustomerServicePort;
 
+import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.ResponseEntity.noContent;
+import static org.springframework.http.ResponseEntity.notFound;
+import static org.springframework.http.ResponseEntity.status;
+
 @RestController
 @RequestMapping("/customers")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
@@ -43,7 +41,7 @@ public class CustomerResource {
 
   @PostMapping
   public ResponseEntity<Void> create(@RequestBody @Valid CustomerRequest customerRequest)
-  throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
+      throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
     Customer customer = customerResourceMapper.toModel(customerRequest);
     customerServicePort.save(customer);
     return status(CREATED).build();
@@ -51,11 +49,16 @@ public class CustomerResource {
 
   @PutMapping("/{id}")
   public ResponseEntity<Void> update(@PathVariable String id, @RequestBody @Valid CustomerRequest customerRequest)
-  throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
-    Customer customer = customerResourceMapper.toModel(customerRequest);
-    customer.setId(id);
-    customerServicePort.save(customer);
-    return ok().build();
+      throws AddressNotInformedException, AddressNotFoundException, InvalidZipCodeException, InvalidTaxIdNumberException {
+    try {
+      customerServicePort.findById(id);
+      Customer customer = customerResourceMapper.toModel(customerRequest);
+      customer.setId(id);
+      customerServicePort.save(customer);
+      return noContent().build();
+    } catch (CustomerNotFoundException e) {
+      return notFound().build();
+    }
   }
 
   @DeleteMapping("/{id}")
@@ -83,7 +86,7 @@ public class CustomerResource {
     List<CustomerResponse> response = customerServicePort.findAll()
                                                          .stream()
                                                          .map(customerResourceMapper::toDto)
-                                                         .collect(Collectors.toList());
+                                                         .toList();
     return CollectionUtils.isEmpty(response) ?
            noContent().build() : ResponseEntity.ok(response);
   }
