@@ -1,4 +1,4 @@
-package poc.hexagonal.config;
+package poc.hexagonal.infrastructure.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
