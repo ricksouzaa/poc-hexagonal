@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -33,13 +32,11 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     ErrorDetail error = ErrorDetail.fromHttpStatusCode(INTERNAL_SERVER_ERROR)
                                    .message(ex.getMessage())
                                    .build();
-
     return handleExceptionInternal(ex, error, new HttpHeaders(), INTERNAL_SERVER_ERROR, request);
   }
 
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, @NonNull HttpHeaders headers, HttpStatusCode status, @NonNull WebRequest request) {
-    HttpStatus httpStatus = HttpStatus.resolve(status.value());
     ErrorDetail error = ErrorDetail.fromHttpStatusCode(status)
                                    .details(createErrorDetails(ex.getBindingResult()))
                                    .build();
@@ -48,7 +45,6 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
   @Override
   protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-    HttpStatus httpStatus = HttpStatus.resolve(status.value());
     ErrorDetail error = ErrorDetail.fromHttpStatusCode(status)
                                    .message(ex.getMessage())
                                    .build();
