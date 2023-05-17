@@ -73,7 +73,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
   }
 
   private String getExceptionMessage(CoreException ex) {
-    return messageSource.getMessage(ex.getClass().getSimpleName(), null,
+    return messageSource.getMessage(ex.getClass().getName(), null,
                                     LocaleContextHolder.getLocale());
   }
 }
