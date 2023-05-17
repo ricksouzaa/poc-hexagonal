@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import poc.hexagonal.application.core.exceptions.CoreException;
 
 import java.util.List;
 
@@ -31,6 +32,14 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
   public ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
     ErrorDetail error = ErrorDetail.fromHttpStatusCode(INTERNAL_SERVER_ERROR)
                                    .message(ex.getMessage())
+                                   .build();
+    return handleExceptionInternal(ex, error, new HttpHeaders(), INTERNAL_SERVER_ERROR, request);
+  }
+
+  @ExceptionHandler(CoreException.class)
+  public ResponseEntity<Object> handleCoreException(CoreException ex, WebRequest request) {
+    ErrorDetail error = ErrorDetail.fromHttpStatusCode(INTERNAL_SERVER_ERROR)
+                                   .message(getExceptionMessage(ex))
                                    .build();
     return handleExceptionInternal(ex, error, new HttpHeaders(), INTERNAL_SERVER_ERROR, request);
   }
@@ -61,5 +70,10 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
   private String getMessage(ObjectError field) {
     return messageSource.getMessage(field, LocaleContextHolder.getLocale());
+  }
+
+  private String getExceptionMessage(CoreException ex) {
+    return messageSource.getMessage(ex.getClass().getSimpleName(), null,
+                                    LocaleContextHolder.getLocale());
   }
 }

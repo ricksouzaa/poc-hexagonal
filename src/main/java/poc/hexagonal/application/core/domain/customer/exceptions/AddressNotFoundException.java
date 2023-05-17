@@ -1,6 +1,8 @@
 package poc.hexagonal.application.core.domain.customer.exceptions;
 
-public class AddressNotFoundException extends Exception {
+import poc.hexagonal.application.core.exceptions.CoreException;
+
+public class AddressNotFoundException extends CoreException {
   public AddressNotFoundException() {
     super("Address not found");
   }

@@ -1,6 +1,8 @@
 package poc.hexagonal.application.core.domain.customer.exceptions;
 
-public class AddressNotInformedException extends Throwable {
+import poc.hexagonal.application.core.exceptions.CoreException;
+
+public class AddressNotInformedException extends CoreException {
   public AddressNotInformedException() {
     super("Address not informed");
   }

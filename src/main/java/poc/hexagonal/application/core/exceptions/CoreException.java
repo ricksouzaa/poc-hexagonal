@@ -1,4 +1,10 @@
 package poc.hexagonal.application.core.exceptions;
 
-public class CoreException extends RuntimeException {
+public class CoreException extends Exception {
+  public CoreException() {
+  }
+
+  public CoreException(String message) {
+    super(message);
+  }
 }

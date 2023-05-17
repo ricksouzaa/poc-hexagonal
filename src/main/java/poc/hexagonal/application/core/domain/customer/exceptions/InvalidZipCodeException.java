@@ -1,6 +1,8 @@
 package poc.hexagonal.application.core.domain.customer.exceptions;
 
-public class InvalidZipCodeException extends Exception {
+import poc.hexagonal.application.core.exceptions.CoreException;
+
+public class InvalidZipCodeException extends CoreException {
   public InvalidZipCodeException() {
     super("Invalid zip code (It must have size to 8)");
   }
