@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 
 import java.util.List;
 
@@ -19,9 +18,8 @@ public class ErrorDetail {
   private String       message;
   private List<String> details;
 
-  public static ErrorDetailBuilder fromHttpStatusCode(HttpStatusCode statusCode) {
+  public static ErrorDetailBuilder fromHttpStatus(HttpStatus status) {
     ErrorDetailBuilder builder = builder();
-    HttpStatus status = HttpStatus.resolve(statusCode.value());
     if (status != null) {
       builder.status(status.value())
           .error(status.getReasonPhrase());
