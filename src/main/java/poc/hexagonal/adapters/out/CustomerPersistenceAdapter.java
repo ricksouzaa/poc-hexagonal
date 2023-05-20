@@ -1,7 +1,6 @@
 package poc.hexagonal.adapters.out;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import poc.hexagonal.adapters.out.persistence.customer.CustomerRepository;
 import poc.hexagonal.adapters.out.persistence.customer.mappers.CustomerEntityMapper;
@@ -13,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+@RequiredArgsConstructor
 public class CustomerPersistenceAdapter implements CustomerPersistencePort {
 
   private final CustomerRepository   customerRepository;

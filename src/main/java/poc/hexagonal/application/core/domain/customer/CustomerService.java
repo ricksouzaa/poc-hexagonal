@@ -30,8 +30,8 @@ public class CustomerService implements CustomerServicePort {
   private void locateAddress(Customer customer) throws AddressNotFoundException, InvalidZipCodeException, AddressNotInformedException {
     validateAddress(customer.getAddress());
 
-    Address address = addressLocatorPort.findByZipCode(customer.getAddress().getZipCode())
-                                        .orElseThrow(AddressNotFoundException::new);
+    var address = addressLocatorPort.findByZipCode(customer.getAddress().getZipCode())
+                                    .orElseThrow(AddressNotFoundException::new);
 
     customer.setAddress(address);
   }
@@ -46,7 +46,7 @@ public class CustomerService implements CustomerServicePort {
     if (address == null) {
       throw new AddressNotInformedException();
     }
-    String zipCode = address.getZipCode();
+    var zipCode = address.getZipCode();
     if (zipCode == null || zipCode.length() != 8) {
       throw new InvalidZipCodeException();
     }
