@@ -38,7 +38,6 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     return handleExceptionInternal(ex, body, new HttpHeaders(), BAD_REQUEST, request);
   }
 
-
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
     var body = ProblemDetail.forStatusAndDetail(status, createErrorDetails(ex.getBindingResult()).toString());
