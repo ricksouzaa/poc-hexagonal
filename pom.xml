@@ -17,6 +17,13 @@
   <name>poc-hexagonal</name>
   <description>poc-hexagonal</description>
 
+  <scm>
+    <url>git@github.com:ricksouzaa/poc-hexagonal.git</url> <!-- URL HTTP de clone do projeto -->
+    <connection>scm:git:git@github.com:ricksouzaa/poc-hexagonal.git</connection> <!-- URL HTTP de clone do projeto -->
+    <developerConnection>scm:git:git@github.com:ricksouzaa/poc-hexagonal.git</developerConnection> <!-- URL HTTP de clone do projeto -->
+    <tag>@{project.version}</tag>
+  </scm>
+
   <properties>
     <java.version>17</java.version>
     <spring-cloud.version>2022.0.2</spring-cloud.version>
@@ -147,6 +154,11 @@
             </compilerArg>
           </compilerArgs>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven-release-plugin.version}</version>
       </plugin>
     </plugins>
   </build>
