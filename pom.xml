@@ -12,7 +12,7 @@
 
   <groupId>pocs</groupId>
   <artifactId>poc-hexagonal</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
 
   <name>poc-hexagonal</name>
   <description>poc-hexagonal</description>
@@ -21,7 +21,7 @@
     <url>git@github.com:ricksouzaa/poc-hexagonal.git</url>
     <connection>scm:git:git@github.com:ricksouzaa/poc-hexagonal.git</connection>
     <developerConnection>scm:git:git@github.com:ricksouzaa/poc-hexagonal.git</developerConnection>
-    <tag>@{project.version}</tag>
+    <tag>poc-hexagonal-0.0.1</tag>
   </scm>
 
   <properties>
