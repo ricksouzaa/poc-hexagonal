@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import poc.hexagonal.adapters.in.rest.customer.dtos.request.CustomerRequest;
 import poc.hexagonal.adapters.in.rest.customer.dtos.response.CustomerResponse;
 import poc.hexagonal.adapters.in.rest.customer.mappers.CustomerResourceMapper;
-import poc.hexagonal.application.core.domain.customer.exceptions.AddressNotFoundException;
-import poc.hexagonal.application.core.domain.customer.exceptions.AddressNotInformedException;
-import poc.hexagonal.application.core.domain.customer.exceptions.CustomerNotFoundException;
-import poc.hexagonal.application.core.domain.customer.exceptions.InvalidTaxIdNumberException;
-import poc.hexagonal.application.core.domain.customer.exceptions.InvalidZipCodeException;
-import poc.hexagonal.application.core.domain.customer.ports.in.CustomerServicePort;
+import poc.hexagonal.application.core.domains.customer.exceptions.AddressNotFoundException;
+import poc.hexagonal.application.core.domains.customer.exceptions.AddressNotInformedException;
+import poc.hexagonal.application.core.domains.customer.exceptions.CustomerNotFoundException;
+import poc.hexagonal.application.core.domains.customer.exceptions.InvalidTaxIdNumberException;
+import poc.hexagonal.application.core.domains.customer.exceptions.InvalidZipCodeException;
+import poc.hexagonal.application.core.domains.customer.ports.in.CustomerServicePort;
 
 import java.util.List;
 

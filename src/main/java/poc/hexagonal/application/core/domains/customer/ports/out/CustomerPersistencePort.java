@@ -1,6 +1,6 @@
-package poc.hexagonal.application.core.domain.customer.ports.out;
+package poc.hexagonal.application.core.domains.customer.ports.out;
 
-import poc.hexagonal.application.core.domain.customer.models.Customer;
+import poc.hexagonal.application.core.domains.customer.models.Customer;
 
 import java.util.List;
 import java.util.Optional;

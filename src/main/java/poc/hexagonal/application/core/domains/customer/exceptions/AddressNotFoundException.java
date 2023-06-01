@@ -1,4 +1,4 @@
-package poc.hexagonal.application.core.domain.customer.exceptions;
+package poc.hexagonal.application.core.domains.customer.exceptions;
 
 import poc.hexagonal.application.core.exceptions.CoreException;
 

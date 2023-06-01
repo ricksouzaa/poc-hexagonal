@@ -1,4 +1,4 @@
-package poc.hexagonal.application.core.domain.customer;
+package poc.hexagonal.application.core.domains.customer;
 
 import static java.util.Optional.of;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -15,14 +15,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import poc.hexagonal.application.core.domain.customer.exceptions.AddressNotFoundException;
-import poc.hexagonal.application.core.domain.customer.exceptions.AddressNotInformedException;
-import poc.hexagonal.application.core.domain.customer.exceptions.InvalidTaxIdNumberException;
-import poc.hexagonal.application.core.domain.customer.exceptions.InvalidZipCodeException;
-import poc.hexagonal.application.core.domain.customer.models.Address;
-import poc.hexagonal.application.core.domain.customer.models.Customer;
-import poc.hexagonal.application.core.domain.customer.ports.out.AddressLocatorPort;
-import poc.hexagonal.application.core.domain.customer.ports.out.CustomerPersistencePort;
+import poc.hexagonal.application.core.domains.customer.exceptions.AddressNotFoundException;
+import poc.hexagonal.application.core.domains.customer.exceptions.AddressNotInformedException;
+import poc.hexagonal.application.core.domains.customer.exceptions.InvalidTaxIdNumberException;
+import poc.hexagonal.application.core.domains.customer.exceptions.InvalidZipCodeException;
+import poc.hexagonal.application.core.domains.customer.models.Address;
+import poc.hexagonal.application.core.domains.customer.models.Customer;
+import poc.hexagonal.application.core.domains.customer.ports.out.AddressLocatorPort;
+import poc.hexagonal.application.core.domains.customer.ports.out.CustomerPersistencePort;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {

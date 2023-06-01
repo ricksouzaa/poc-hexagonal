@@ -34,7 +34,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
   @ExceptionHandler(CoreException.class)
   public ResponseEntity<Object> handleCoreException(CoreException ex, WebRequest request) {
-    ProblemDetail body = createProblemDetail(ex, BAD_REQUEST, ex.getMessage(), ex.getClass().getName(), null, request);
+    var body = createProblemDetail(ex, BAD_REQUEST, ex.getMessage(), ex.getClass().getName(), null, request);
     return handleExceptionInternal(ex, body, new HttpHeaders(), BAD_REQUEST, request);
   }
 

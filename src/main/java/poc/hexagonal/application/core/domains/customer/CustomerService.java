@@ -1,16 +1,16 @@
-package poc.hexagonal.application.core.domain.customer;
+package poc.hexagonal.application.core.domains.customer;
 
 import lombok.RequiredArgsConstructor;
-import poc.hexagonal.application.core.domain.customer.exceptions.AddressNotFoundException;
-import poc.hexagonal.application.core.domain.customer.exceptions.AddressNotInformedException;
-import poc.hexagonal.application.core.domain.customer.exceptions.CustomerNotFoundException;
-import poc.hexagonal.application.core.domain.customer.exceptions.InvalidTaxIdNumberException;
-import poc.hexagonal.application.core.domain.customer.exceptions.InvalidZipCodeException;
-import poc.hexagonal.application.core.domain.customer.models.Address;
-import poc.hexagonal.application.core.domain.customer.models.Customer;
-import poc.hexagonal.application.core.domain.customer.ports.in.CustomerServicePort;
-import poc.hexagonal.application.core.domain.customer.ports.out.AddressLocatorPort;
-import poc.hexagonal.application.core.domain.customer.ports.out.CustomerPersistencePort;
+import poc.hexagonal.application.core.domains.customer.exceptions.AddressNotFoundException;
+import poc.hexagonal.application.core.domains.customer.exceptions.AddressNotInformedException;
+import poc.hexagonal.application.core.domains.customer.exceptions.CustomerNotFoundException;
+import poc.hexagonal.application.core.domains.customer.exceptions.InvalidTaxIdNumberException;
+import poc.hexagonal.application.core.domains.customer.exceptions.InvalidZipCodeException;
+import poc.hexagonal.application.core.domains.customer.models.Address;
+import poc.hexagonal.application.core.domains.customer.models.Customer;
+import poc.hexagonal.application.core.domains.customer.ports.in.CustomerServicePort;
+import poc.hexagonal.application.core.domains.customer.ports.out.AddressLocatorPort;
+import poc.hexagonal.application.core.domains.customer.ports.out.CustomerPersistencePort;
 
 import java.util.List;
 

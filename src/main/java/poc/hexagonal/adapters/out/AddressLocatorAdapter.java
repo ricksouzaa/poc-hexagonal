@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import poc.hexagonal.adapters.out.clients.viacep.ViaCepRestClient;
 import poc.hexagonal.adapters.out.clients.viacep.mappers.ViaCepAddressMapper;
-import poc.hexagonal.application.core.domain.customer.models.Address;
-import poc.hexagonal.application.core.domain.customer.ports.out.AddressLocatorPort;
+import poc.hexagonal.application.core.domains.customer.models.Address;
+import poc.hexagonal.application.core.domains.customer.ports.out.AddressLocatorPort;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package poc.hexagonal.application.core.domain.customer.models;
+package poc.hexagonal.application.core.domains.customer.models;
 
 import lombok.Builder;
 import lombok.Data;
