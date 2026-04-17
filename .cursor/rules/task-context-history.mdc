@@ -1,0 +1,48 @@
+---
+description: >-
+  Ao encerrar uma TASK-NNN, criar/atualizar documento de histórico de contexto
+  em docs/context/ (interações IA/agentes, decisões) para tarefas futuras.
+globs:
+  - docs/context/**
+alwaysApply: true
+---
+
+# Histórico de contexto por tarefa (`docs/context/`)
+
+## Finalidade
+
+- Servir de **base de conhecimento** para **revisitar** a entrega, **onboarding** de agentes e **continuidade** entre sessões.
+- Registrar o que foi decidido, pedido e executado em torno da **TASK-NNN**, não só o diff final.
+
+## Obrigatoriedade (workflow)
+
+- Ao **concluir** a entrega de uma **TASK-NNN** (Definition of Done da task: código, testes, doc, PR quando aplicável), o assistente **deve** criar ou atualizar **um arquivo por tarefa** em:
+
+ **`docs/context/TASK-NNN-<slug-kebab>-historico.md`**
+
+  O **`NNN`** é o mesmo da TASK; o **slug** alinha-se ao arquivo em `docs/tasks/TASK-NNN-<slug>.md` quando existir.
+
+- **Não é opcional** pular este artefato: toda TASK encerrada com entrega real **exige** o `docs/context/…-historico.md` atualizado no fechamento (junto ao commit que fecha a entrega). A única subseção facultativa é *Histórico bruto / Transcript* (item 8 abaixo).
+
+- Se a pasta **`docs/context/`** ainda não existir, **criá-la** com o primeiro arquivo.
+
+- Este passo é **parte do fechamento** da task em `workflow-entrega.mdc`; não substitui PRD/TASK/ADR.
+
+## Conteúdo mínimo do arquivo
+
+1. **Cabeçalho (tabela):** TASK, PRD, ADR(s), branch, link PR (se houver), data de fechamento, autores humanos se relevante.
+2. **Resumo executivo** —5–10 linhas: o que foi feito e por quê.
+3. **Decisões** — bullets (técnicas e de produto) tomadas durante a sessão.
+4. **Interações com IA / agentes** — cronologia ou tópicos: pedidos do solicitante, respostas acordadas, alternativas descartadas (o que o chat da sessão registrou de material).
+5. **Comandos e verificação** — ex.: `mvn clean verify`, branches, commits notáveis.
+6. **Problemas e soluções** — erros, bloqueios, como foram resolvidos.
+7. **Follow-ups** — dívidas, próximos passos, TASKs futuras sugeridas.
+8. **Histórico bruto (opcional e recomendado)** — se o solicitante **exportar/colar** trechos do transcript do Cursor ou anotar referência a conversa, colocar em subseção *Transcript / anexos* para fidelidade máxima.
+
+## Limitações honestas
+
+- O assistente **não** tem acesso automático ao arquivo interno de histórico do Cursor; por isso o documento em `docs/context/` deve **consolidar** o que ocorreu na sessão e o time pode **enriquecer** com exportação manual do chat quando precisar de arquivo completo.
+
+## Leitura nas tarefas seguintes
+
+- Ao trabalhar em **revisão** ou **nova task** que toque no mesmo domínio, **consultar** `docs/context/TASK-NNN-*-historico.md` relevantes (ver também `documentation-grounding.mdc`).

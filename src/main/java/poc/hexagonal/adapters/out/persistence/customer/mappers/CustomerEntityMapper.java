@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import poc.hexagonal.adapters.out.persistence.customer.entities.CustomerEntity;
 import poc.hexagonal.application.core.domains.customer.models.Customer;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CustomerEntityMapper {
   CustomerEntity toEntity(Customer customer);
 

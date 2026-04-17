@@ -1,0 +1,58 @@
+---
+description: Fluxo de entrega — branch, PRD, TASK, portões e PR (numeração alinhada PRD/TASK).
+globs:
+alwaysApply: true
+---
+
+# Workflow de entrega (branch → PRD → TASK → implementação → PR)
+
+Use este fluxo para qualquer incremento que exija rastreabilidade negócio ↔ técnico.
+
+## Autorização explícita — criação da TASK vs aprovação da TASK vs implementação (sem exceção)
+
+- **Nunca** alterar código da entrega (**`src/`**, testes dessa entrega, `pom.xml`, `application.properties` ou configs ligadas à TASK) **antes** de **`docs/tasks/TASK-NNN-*.md` estar com `Status: Aprovado`** e haver **mensagem explícita** para iniciar/continuar a implementação. **É mandatório:** aprovar a **TASK** no documento **antes** de qualquer implementação — aprovar só o PRD **não** basta.
+- **Silêncio, “pode prosseguir” ambíguo, ou inferência do modelo não contam como aprovação da TASK nem como ordem de codar.**
+- **Portões mínimos (todos necessários, nesta ordem):**
+  1. **PRD-NNN** com **Status: Aprovado** (ou registro explícito equivalente).
+  2. **Criar o arquivo da TASK:** autorização explícita (ex.: *“crie a TASK-001”*). O arquivo nasce tipicamente em **Rascunho** ou **Em revisão** com campo **Status** no cabeçalho.
+  3. **Aprovar a TASK:** o mesmo arquivo deve passar a **Status: Aprovado** (atualização no markdown **ou** mensagem inequívoca *“TASK-001 aprovada”* + o assistente **registra** esse status no documento na mesma sessão).
+  4. **Implementar código:** mensagem explícita **depois** da TASK aprovada (ex.: *“TASK-001 aprovada — pode implementar”*). Ter PRD + TASK no disco **sem** Status **Aprovado** na TASK **proíbe** implementar.
+- **Permitido sem o portão de implementação:** descoberta, PRD, arquivo de TASK em rascunho, leitura de código, sugestões em chat **sem** editar código da entrega.
+
+## Nunca implementar antes da TASK aprovada (reforço)
+
+- **Proibido:** começar ou continuar implementação quando **Status** da TASK for **Rascunho**, **Em revisão** ou ausente.
+- **Obrigatório:** `TASK-NNN-*.md` contém linha **| Status | Aprovado |** (ou fluxo equivalente documentado) **antes** do primeiro commit/edição de código da entrega.
+
+## Numeração alinhada (PRD = TASK)
+
+- Cada entrega recebe um **número sequencial de três dígitos** (`001`, `002`, …), **único no repositório** para o par PRD + TASK.
+- **O mesmo número** identifica:
+  - o **PRD** (`PRD-NNN-…`);
+  - a **TASK** (`TASK-NNN-…`);
+  - referências cruzadas nos metadados (PRD aponta para `TASK-NNN`; TASK aponta para `PRD-NNN`).
+- O próximo `NNN` é o menor inteiro ainda não usado por qualquer `PRD-NNN-*` ou `TASK-NNN-*` em `docs/prd/` e `docs/tasks/`.
+
+## Ordem obrigatória
+
+1. **Branch** — criar `feat/task-NNN-slug-curto` (ou `fix/task-NNN-…`). O `NNN` deve ser o número da entrega. Opcional: incluir referência a ADR no slug (`feat/task-001-adr-0001-cep-fallback`).
+2. **Descoberta (antes do PRD)** — se o requisito estiver incompleto, **não** redigir o PRD ainda: fazer **perguntas objetivas** ao solicitante (ver regra `prd-creation.mdc`).
+3. **PRD** — criar `docs/prd/PRD-NNN-<slug>.md` com metadados incluindo **Número da entrega (PRD/TASK) | NNN** e **Status** (ex.: Rascunho → Em revisão → Aprovado).
+4. **Portão de aprovação do PRD** — **não** criar nem commitar arquivo de TASK até o PRD estar com **Status: Aprovado** (ou equivalente explícito do time) **e** o solicitante **autorizar explicitamente** a criação da TASK (ver seção *Autorização explícita* acima). Até lá, apenas discussão ou rascunho em chat.
+5. **TASK (arquivo)** — somente após o item 4: criar `docs/tasks/TASK-NNN-<slug>.md` com **Status** inicial (ex.: Rascunho), **mesmo NNN**, links PRD/ADR.
+6. **Portão de aprovação da TASK** — revisar conteúdo técnico; atualizar **Status** para **Aprovado** no arquivo. **Nenhuma** implementação antes disso.
+7. **Portão de implementação** — código **somente** com **PRD aprovado** + **TASK-NNN com Status: Aprovado** + **mensagem explícita** para implementar (seção *Autorização explícita*). ADR aceita quando aplicável.
+8. **Implementação + TASK viva** — seguir `hexagonal-architecture.mdc` e `solid-clean-architecture.mdc`. A **TASK-NNN** deve conter **inventários** e **checklists** conforme `task-creation.mdc`; **durante** o trabalho, **revisitar** o arquivo da TASK e **marcar** itens concluídos. **Ordem obrigatória:**
+   - **8a.** Concluir **100%** do **Checklist — execução técnica** (todos `[x]`).
+   - **8b.** Só então executar **Checklist — verificação e PR** (`mvn clean verify`, revisão de docs, abertura de PR).
+   - **8c.** Após abrir o PR: preencher metadado do PR na TASK, executar **Checklist — pós-PR**, **revisar** novamente os checklists e **só então** fazer o(s) **commit(s)** finais que incluem código + **TASK atualizada** + documentação.
+9. **Histórico de contexto (obrigatório)** — ao fechar a entrega: criar ou atualizar **`docs/context/TASK-NNN-<slug>-historico.md`** conforme `task-context-history.mdc`. **Não dispensar** este passo para TASKs com entrega concluída.
+
+## Quando faltar informação
+
+- Antes de qualquer PRD: levantar **lacunas** (objetivo, escopo, não-objetivos, critérios de aceite, restrições, integrações, prazo, risco) e **perguntar**; só então redigir o PRD (detalhe em `prd-creation.mdc`).
+
+## Legado / exceção
+
+- Se existir `TASK-NNN` **sem** `Status: Aprovado`, ou PRD não aprovado: **não implementar**; corrigir metadados ou remover artefatos até o fluxo ficar válido.
+- Se código da entrega existir **antes** da TASK aprovada, tratar como **desvio de processo** — alinhar status da TASK e só então continuar revisão/implementação de forma explícita.

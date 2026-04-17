@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import poc.hexagonal.adapters.out.clients.viacep.dtos.ViaCepAddressResponse;
 import poc.hexagonal.application.core.domains.customer.models.Address;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ViaCepAddressMapper {
   Address toModel(ViaCepAddressResponse viaCepAddressResponse);
 }

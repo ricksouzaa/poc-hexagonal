@@ -5,7 +5,7 @@ import poc.hexagonal.adapters.in.rest.customer.dtos.request.CustomerRequest;
 import poc.hexagonal.adapters.in.rest.customer.dtos.response.CustomerResponse;
 import poc.hexagonal.application.core.domains.customer.models.Customer;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CustomerResourceMapper {
   CustomerResponse toDto(Customer customer);
 

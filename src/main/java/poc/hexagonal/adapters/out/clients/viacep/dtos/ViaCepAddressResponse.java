@@ -5,6 +5,10 @@ import lombok.Data;
 
 @Data
 public class ViaCepAddressResponse {
+
+  /** Quando {@code true}, CEP inexistente na ViaCEP (não acionar fallback). */
+  private Boolean erro;
+
   @JsonProperty("cep")
   private String zipCode;
   @JsonProperty("logradouro")
