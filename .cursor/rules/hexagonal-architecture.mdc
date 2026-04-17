@@ -1,0 +1,34 @@
+---
+description: Arquitetura hexagonal obrigatória — camadas, portas e adaptadores deste projeto
+alwaysApply: true
+---
+
+# Arquitetura hexagonal (obrigatória)
+
+Estas regras **não podem ser violadas** em nenhuma implementação neste repositório.
+
+## Regra de dependência
+
+- **Dentro para fora:** `application.core` **não importa** Spring Web, Spring Data, JPA (`jakarta.persistence`), Feign, DTOs REST nem classes de `adapters` ou `infrastructure` (exceto tipos puros do JDK).
+- **Núcleo:** domínio, portas (`ports.in`, `ports.out`), serviços de aplicação e modelos de domínio ficam em `poc.hexagonal.application.core`.
+- **Driving adapters:** HTTP em `adapters.in.rest` — apenas orquestração, validação de entrada (Bean Validation), mapeamento DTO ↔ domínio e tradução de status HTTP. **Sem regra de negócio.**
+- **Driven adapters:** JPA, Feign e integrações em `adapters.out` — implementam portas e mapeiam para o modelo de domínio.
+- **Infraestrutura:** configuração Spring (`@Configuration`, `@Bean`), `RestControllerAdvice`, OpenAPI em `infrastructure`.
+
+## O que é proibido
+
+- Anotações JPA ou entidades no pacote `application.core`.
+- `CustomerResource` (ou qualquer controller) com validação de negócio que deveria estar no serviço de domínio/aplicação.
+- Serviço de aplicação instanciando implementações concretas de adaptadores — só **portas** no construtor.
+- Vazar tipos de API externa (ex.: DTO ViaCEP) para dentro do núcleo — usar apenas `Address` / modelos de domínio atrás de `AddressLocatorPort`.
+- Novos casos de uso sem **porta de entrada** (`ports.in`) e serviço no core; novas integrações sem **porta de saída** (`ports.out`) e adapter dedicado.
+
+## Ao adicionar funcionalidade
+
+1. Definir ou estender **portas** no `application.core`.
+2. Implementar lógica no **serviço** usando apenas portas.
+3. Expor HTTP via **resource** + DTOs em `adapters.in.rest` **ou** novo adapter de entrada se não for REST.
+4. Persistência/clientes HTTP em `adapters.out` com **mapper** para o domínio.
+5. Registrar beans que conectam portas a implementações em `infrastructure` (como `CustomerConfig`), mantendo o core instanciável sem Spring em testes unitários.
+
+Se uma mudança **quebrar** o fluxo acima, **refatore** até restabelecer o hexágono — não aceite atalhos.

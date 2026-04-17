@@ -1,0 +1,27 @@
+---
+description: >-
+  Grounds all work in the repository documentation under docs/. Use in every
+  session for this project so the agent consults the canonical docs before
+  answering or implementing.
+alwaysApply: true
+---
+
+# Documentação do projeto (obrigatória)
+
+Em **qualquer** pedido sobre o `poc-hexagonal` (código, arquitetura, API, dados, produto, riscos), **use como fonte de verdade** o que está em **`docs/`**.
+
+## Antes de responder ou implementar
+
+1. Abrir ou relembrar o índice **[docs/README.md](docs/README.md)** e escolher o arquivo certo:
+   - **01** — visão geral e limites do sistema
+   - **02** — stack, API, erros, execução
+   - **03** — leitura por papel
+   - **04** — modelo de dados e DDL
+   - **05** — revisão multidisciplinar, tensões, próximos passos
+2. Se a mudança **alterar comportamento**, contrato ou dados, **atualizar a documentação correspondente** no mesmo conjunto de alterações (no mínimo **01** e/ou **02**; **04** se tocar em entidades/schema).
+3. Ao **revisitar** uma entrega ou continuar trabalho relacionado a **TASK-NNN**, consultar também **`docs/context/TASK-NNN-*-historico.md`** (histórico de sessões e decisões com IA), além de PRD/TASK/ADR.
+4. Não contradizer a documentação sem **explicitar** a divergência (ex.: “a doc diz X; o código faz Y — alinhar qual prevalece”).
+
+## Escopo
+
+Esta regra **não** substitui [hexagonal-architecture.mdc](hexagonal-architecture.mdc) nem [solid-clean-architecture.mdc](solid-clean-architecture.mdc); **complementa** com o contexto de negócio e técnico já escrito em `docs/`.

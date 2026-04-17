@@ -37,6 +37,7 @@ Entrega **TASK-001**: `AddressLocatorAdapter` passa a usar **ViaCEP** primeiro e
 
 - `mvn clean verify` com JDK compatível com o `pom.xml` do repositório.
 - Branch: `feat/task-001-adr-0001-cep-fallback-brasilapi`; PR preenchido na tabela do topo após `gh pr create`.
+- **2026-04-17 (atualização):** `origin/main` mesclada na branch de feature (`pom.xml`: `maven-enforcer-plugin` + `maven-release-plugin`); pasta **`.cursor/`** versionada no Git (rules + skills).
 
 ---
 

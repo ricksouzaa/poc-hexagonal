@@ -64,10 +64,12 @@ Hoje o cadastro de cliente depende de **uma única fonte pública** para transfo
 
 ## 9. Critérios de aceite (negócio)
 
-- [ ] Com fonte primária **simulada indisponível** e secundária **ok**, cadastro com CEP válido **conclui** com endereço preenchido.
-- [ ] Com ambas falhando por motivo técnico, usuário recebe **erro** coerente (sem sucesso parcial enganoso).
-- [ ] Com CEP **inexistente** (resposta de negócio na primária), não há segunda chamada **só** para duplicar “não encontrado”.
-- [ ] Em condições normais, a fonte primária é tentada **primeiro**.
+*Verificação **pós-TASK-001** (2026-04-17): cenários abaixo cobertos por testes unitários de `AddressLocatorAdapter` e pelo comportamento descrito na ADR 0001; smoke **end-to-end** em homologação permanece recomendável (RNF-01).*
+
+- [x] Com fonte primária **simulada indisponível** e secundária **ok**, cadastro com CEP válido **conclui** com endereço preenchido.
+- [x] Com ambas falhando por motivo técnico, usuário recebe **erro** coerente (sem sucesso parcial enganoso).
+- [x] Com CEP **inexistente** (resposta de negócio na primária), não há segunda chamada **só** para duplicar “não encontrado”.
+- [x] Em condições normais, a fonte primária é tentada **primeiro**.
 
 ## 10. Dependências e riscos
 

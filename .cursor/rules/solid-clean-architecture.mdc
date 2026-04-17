@@ -1,0 +1,37 @@
+---
+description: SOLID, Clean Architecture e código limpo — obrigatório em toda implementação
+alwaysApply: true
+---
+
+# SOLID, Clean Architecture e código limpo (obrigatório)
+
+Aplicar **sempre** que escrever ou alterar código Java neste projeto.
+
+## SOLID
+
+- **S — Responsabilidade única:** uma classe, um motivo para mudar. Separar validação de domínio, mapeamento, persistência e HTTP.
+- **O — Aberto/fechado:** estender comportamento via **novas implementações de portas** ou estratégias, não editando o núcleo para cada integração nova quando evitável.
+- **L — Substituição de Liskov:** implementações de portas devem honrar o contrato sem surpresas (ex.: não lançar exceções não documentadas pelo uso esperado).
+- **I — Interfaces segregadas:** portas pequenas e focadas; evitar “God interface” com métodos não usados por todos os clientes.
+- **D — Inversão de dependência:** módulos de alto nível dependem de **abstrações** (portas); detalhes (JPA, Feign) dependem indiretamente do núcleo ao **implementar** essas abstrações.
+
+## Clean Architecture (alinhamento de mercado)
+
+- **Entidades / use cases** no centro; frameworks são **detalhes** substituíveis.
+- **Fronteiras explícitas:** dados que cruzam camadas com tipos estáveis (domínio), não vazar estruturas de persistência ou JSON bruto para o core.
+- **Testabilidade:** regras de negócio testáveis sem subir Spring (como em `CustomerServiceTest` com mocks das portas).
+
+## Código limpo (práticas atuais)
+
+- Nomes **significativos** (português ou inglês **consistente** com o existente no arquivo).
+- Métodos **curtos**; extrair quando há muitos níveis de indentação ou responsabilidades misturadas.
+- **Evitar comentários** que repetem o óbvio; preferir código autoexplicativo.
+- **Null-safety consciente:** `Optional` nas portas de consulta onde fizer sentido; validar invariantes no domínio e falhar cedo com exceções de domínio (`CoreException` ou hierarquia do projeto).
+- **Imutabilidade onde possível** em modelos de domínio; mutação controlada só quando o padrão do projeto já usa builders/setters de forma consistente.
+
+## Checklist antes de concluir uma alteração
+
+- [ ] Nenhuma dependência proibida do núcleo para frameworks/adapters (ver regra hexagonal).
+- [ ] Nova lógica de negócio está no **serviço de aplicação/domínio**, não no controller.
+- [ ] Portas refletem necessidades do **caso de uso**, não do banco ou da API externa.
+- [ ] Testes cobrem regras novas ou regressão crítica (preferir testes unitários do core sem contexto Spring).

@@ -1,0 +1,32 @@
+---
+description: >-
+  Defines format for Architecture Decision Records (ADR). Use when the user
+  asks for ADR, ABR (decisão de arquitetura), decision record, or "documentar
+  decisão técnica".
+alwaysApply: false
+---
+
+# ADR — Architecture Decision Record
+
+**ABR** no pedido do usuário deve ser tratado como **ADR** (registro de decisão de arquitetura), salvo indicação explícita de outro formato.
+
+Quando pedirem **ADR**, **decisão de arquitetura** ou **documentar trade-off técnico**, gerar um registro no estilo **Markdown** com numeração sugerida **`docs/adr/NNNN-titulo-curto-kebab.md`** (NNNN sequencial, ex. 0001, 0002).
+
+## Estrutura obrigatória (base Nygard)
+
+1. **Título:** `# ADR NNNN: <decisão em uma linha>`
+2. **Status:** proposta | aceita | substituída por ADR-XXXX | depreciada
+3. **Contexto:** forças técnicas, de negócio, restrições; o que precisa ser decidido.
+4. **Decisão:** o que foi (ou será) escolhido, em linguagem direta.
+5. **Consequências:** positivas, negativas, riscos mitigados ou novos; impacto em `docs/02` e `docs/04` se houver.
+6. **Alternativas consideradas:** pelo menos uma alternativa rejeitada com **motivo curto**.
+
+## Alinhamento com este repositório
+
+- Decisões que afetam **portas, adaptadores ou modelo de dados** devem mencionar impacto na **arquitetura hexagonal** (ver `hexagonal-architecture.mdc`).
+- Após decisão **aceita** que mude API ou schema, o agente deve **lembrar** de atualizar **`docs/02-referencia-tecnica.md`** e, se couber, **`docs/04-modelo-dados.md`** e **`docs/05-revisao-multidisciplinar.md`** (tensões resolvidas).
+
+## Tom
+
+Objetivo, sem marketing; datas e nomes só quando o usuário fornecer.
+
