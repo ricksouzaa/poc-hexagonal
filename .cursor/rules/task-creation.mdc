@@ -1,0 +1,101 @@
+---
+description: >-
+  TASK técnica obrigatória: inventário de classes, checklists de execução,
+  revisão durante implementação, fases verificação/PR/commit.
+globs:
+  - docs/tasks/**
+alwaysApply: false
+---
+
+# Criação e execução de TASK
+
+## Pré-requisito obrigatório
+
+- Existe `docs/prd/PRD-NNN-*.md` com **Status: Aprovado** (ou equivalente explícito).
+- Autorização explícita para **criar** o arquivo `TASK-NNN-*.md` (ver `workflow-entrega.mdc`).
+- **Não** criar `TASK-NNN-*.md` antes desses portões.
+
+## Numeração e nome do arquivo
+
+- **NNN** igual ao PRD; arquivo: `docs/tasks/TASK-NNN-<slug-kebab>.md`.
+
+## Metadados (tabela inicial — obrigatório)
+
+| Campo | Valor |
+|--------|--------|
+| **Status** | Rascunho \| Em revisão \| **Aprovado** \| Obsoleto — só **Aprovado** libera implementação |
+| Tipo | feature \| fix \| chore \| doc |
+| Branch | `feat/task-NNN-…` |
+| PRD | link `../prd/PRD-NNN-….md` |
+| ADR | link(s) quando aplicável |
+| Número da entrega | NNN |
+| **PR aberto** | *(preencher após `gh pr create`: URL ou #)* |
+
+---
+
+## Conteúdo obrigatório de toda TASK (mandatório)
+
+Toda `TASK-NNN-*.md` **deve** conter as seções abaixo. **Checklists** usam `- [ ]` / `- [x]` em Markdown e **devem** ser atualizados durante a execução. Omitir seção ou checklist inicial incompleto é **inválido** para aprovação da TASK.
+
+### 1. Resumo técnico
+
+- Objetivo da entrega em 1–3 parágrafos, alinhado ao PRD/ADR.
+- **Versões de Java / Spring / bibliotecas** só entram no escopo da TASK quando o **PRD ou a própria TASK** declarar isso explicitamente como objetivo da entrega; ajustes “paralelos” ao escopo negócio/técnico principal **não** devem ser misturados ao checklist sem decisão explícita do time.
+
+### 2. Inventário — arquivos a **criar**
+
+- Lista explícita (caminhos relativos ao repo): classes, interfaces, testes, recursos.
+- Ex.: `src/main/java/.../Foo.java`
+
+### 3. Inventário — arquivos a **alterar**
+
+- Lista explícita: classes, configs (`application.properties`, `pom.xml`), documentação (`docs/02-…`, etc.).
+- Se nenhum: escrever *“Nenhuma alteração em arquivos existentes”* (raro).
+
+### 4. Inventário — documentação e config (fora de `src/`)
+
+- Ex.: `docs/02-referencia-tecnica.md`, `application.properties`, regras `.cursor/` se forem parte da entrega.
+
+### 5. Checklist — execução técnica (implementação)
+
+- Itens **acionáveis**, um por linha com `- [ ]`.
+- Cobrem: criação/alteração de código alinhada aos inventários (incl. testes unitários da entrega).
+- **Regra:** **só** após **todos** os itens desta seção estarem `- [x]` pode-se seguir para a fase **Verificação** (testes/build formais abaixo).
+- Durante a implementação: **reabrir a TASK** e marcar itens; se o escopo mudar, **ajustar** inventário e checklist **no mesmo arquivo** (com nota curta na seção *Notas de execução* se necessário).
+
+### 6. Checklist — verificação e PR
+
+- Obrigatório incluir pelo menos:
+  - [ ] `mvn clean verify` (ou comando de build acordado no repo) **após** checklist técnico completo.
+  - [ ] Documentação citada na TASK atualizada.
+  - [ ] `gh pr create` (ou fluxo equivalente) com referência a PRD/TASK/ADR.
+- Itens adicionais específicos da entrega (ex.: smoke manual) entram aqui.
+
+### 7. Checklist — pós-PR (antes do commit final que fecha a entrega)
+
+- Obrigatório incluir pelo menos:
+  - [ ] Preencher metadado **PR aberto** na tabela do topo (URL ou número).
+  - [ ] Revisar **todos** os checklists acima; marcar o que já reflete o estado real pós-PR.
+  - [ ] Se o PR exigir ajustes após review, novos itens entram em *execução técnica* ou *verificação* e só então novo ciclo de marcação.
+- **Commit:** alterações de código + **TASK atualizada** + docs + **`docs/context/TASK-NNN-*-historico.md` (obrigatório)** devem ir **juntas** no(s) commit(s) que fecham a entrega, após esta revisão.
+
+### 8. Notas de execução *(opcional mas recomendado)*
+
+- Decisões tomadas durante o trabalho, desvios do plano original, follow-ups.
+
+---
+
+## Aprovação da TASK (portão antes do código)
+
+- **Status: Aprovado** no arquivo **e** mensagem explícita para implementar (`workflow-entrega.mdc`).
+- Na aprovação, o revisor confere se **inventários + três checklists** existem e estão coerentes com o escopo.
+
+## Durante a implementação (mandatório)
+
+- **Revisitar** `TASK-NNN-*.md` em cada marco relevante (ex.: após cada grupo de alterações ou ao fim do dia).
+- **Atualizar** checklists (`[ ]` → `[x]`) e inventário se surgirem arquivos não previstos.
+- **Proibido** declarar a fase “verificação” concluída com itens técnicos ainda abertos.
+
+## Após merge / conclusão
+
+- `docs/context/TASK-NNN-<slug>-historico.md` conforme `task-context-history.mdc`.

@@ -1,0 +1,52 @@
+---
+description: Como criar PRDs em docs/prd — descoberta, numeração PRD-NNN, portão antes da TASK.
+globs:
+  - docs/prd/**
+alwaysApply: false
+---
+
+# Criação de PRD
+
+## Quando usar
+
+- Há mudança de **comportamento de produto**, **jornada**, **regra de negócio** ou **prioridade** que precise alinhamento antes do código.
+
+## Antes de escrever o PRD (descoberta)
+
+Se faltar qualquer informação essencial, **parar e perguntar** ao solicitante (desenvolvedor, PO ou stakeholder). Exemplos de perguntas úteis:
+
+- Qual **problema** ou oportunidade exata? Quem é impactado?
+- **Objetivo** mensurável e **não-objetivos** (o que não faremos neste incremento)?
+- **Critérios de aceite** verificáveis (incluindo casos negativos e borda)?
+- **Restrições** (tempo, compliance, dependência de terceiro, indisponibilidade aceitável)?
+- **Integrações** ou fontes de dados envolvidas; o que acontece se falharem?
+- Há **ADR** ou decisão arquitetural pendente que bloqueia o PRD?
+
+Só após respostas suficientes (ou registro explícito de “assumido provisoriamente”) redigir o PRD.
+
+## Numeração e nome do arquivo
+
+- Obter o próximo **NNN** conforme `workflow-entrega.mdc` (mesmo número que a futura TASK).
+- Arquivo: `docs/prd/PRD-NNN-<slug-kebab>.md`.
+- No cabeçalho (tabela de metadados), incluir:
+  - **Número da entrega (PRD/TASK)** | `NNN` (ex.: `001`)
+  - **Status** | Rascunho / Em revisão / Aprovado / Obsoleto
+  - Links para ADR(s) quando existirem
+
+## Conteúdo mínimo sugerido
+
+1. Contexto e problema  
+2. Objetivos e não-objetivos  
+3. Escopo (Must/Should/Could)  
+4. Requisitos funcionais e não funcionais (negócio)  
+5. Critérios de aceite testáveis  
+6. Riscos, dependências, métricas, open questions  
+
+## Depois do PRD
+
+- Submeter à revisão; **Status: Aprovado** do PRD é **necessário** mas **não suficiente** para codar: criar `TASK-NNN-*.md` só com autorização explícita; a TASK deve ser **aprovada** (`Status: Aprovado` na TASK) **antes** de qualquer implementação (ver `workflow-entrega.mdc`).
+- Aprovar o PRD **não** substitui a aprovação da TASK.
+
+## Ligação com outros artefatos
+
+- Se a decisão técnica for polêmica ou irreversível, criar/atualizar **ADR** em `docs/adr/` e referenciar no PRD.
