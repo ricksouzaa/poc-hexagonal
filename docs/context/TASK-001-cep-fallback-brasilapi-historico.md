@@ -6,7 +6,7 @@
 | PRD | [PRD-001](../prd/PRD-001-resiliencia-consulta-cep.md) |
 | ADR | [0001](../adr/0001-viacep-e-alternativas-consulta-cep.md) |
 | Branch | `feat/task-001-adr-0001-cep-fallback-brasilapi` |
-| PR | *(preencher quando existir)* |
+| PR | https://github.com/ricksouzaa/poc-hexagonal/pull/1 |
 | Fechamento | 2026-04-17 |
 
 ---

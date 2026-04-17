@@ -2,13 +2,13 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Status** | **Aprovado** — implementação e `mvn verify` concluídos (2026-04-17); abrir PR e fechar §7 |
+| **Status** | **Aprovado** — entrega concluída; PR aberto (2026-04-17); aguardando review/merge |
 | Número da entrega | 001 |
 | Tipo | feature |
 | Branch | `feat/task-001-adr-0001-cep-fallback-brasilapi` |
 | PRD | [PRD-001-resiliencia-consulta-cep.md](../prd/PRD-001-resiliencia-consulta-cep.md) |
 | ADR | [0001-viacep-e-alternativas-consulta-cep.md](../adr/0001-viacep-e-alternativas-consulta-cep.md) |
-| **PR aberto** | *(preencher após `gh pr create`)* |
+| **PR aberto** | https://github.com/ricksouzaa/poc-hexagonal/pull/1 |
 
 ---
 
@@ -69,16 +69,16 @@ Implementar, atrás de **`AddressLocatorPort`**, a cadeia **ViaCEP (primária) �
 
 - [x] `mvn clean verify` (JDK conforme `pom.xml` / política do repo).
 - [x] Revisar `docs/02-referencia-tecnica.md` e marcar coerência com o código.
-- [ ] `gh pr create` (título/descrição com PRD-001, TASK-001, ADR 0001, branch).
+- [x] `gh pr create` (título/descrição com PRD-001, TASK-001, ADR 0001, branch).
 
 ---
 
 ## 7. Checklist — pós-PR (antes do commit final que fecha a entrega)
 
-- [ ] Tabela do topo: preencher **PR aberto** (URL ou #).
-- [ ] Revisar seções 5 e 6: todos os itens refletem o estado real; ajustar notas se o review do PR mudou o escopo.
+- [x] Tabela do topo: preencher **PR aberto** (URL ou #).
+- [x] Revisar seções 5 e 6: todos os itens refletem o estado real; ajustar notas se o review do PR mudou o escopo.
 - [x] Criar/atualizar `docs/context/TASK-001-cep-fallback-brasilapi-historico.md`.
-- [ ] **Commit(s)** incluindo: código + **esta TASK** (checklists atualizados) + `docs/02` + `docs/context` conforme aplicável.
+- [x] **Commit(s)** incluindo: código + **esta TASK** (checklists atualizados) + `docs/02` + `docs/context` conforme aplicável.
 
 ---
 
