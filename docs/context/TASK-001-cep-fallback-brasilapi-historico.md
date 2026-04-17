@@ -5,7 +5,7 @@
 | TASK | [TASK-001-cep-fallback-brasilapi.md](../tasks/TASK-001-cep-fallback-brasilapi.md) |
 | PRD | [PRD-001](../prd/PRD-001-resiliencia-consulta-cep.md) |
 | ADR | [0001](../adr/0001-viacep-e-alternativas-consulta-cep.md) |
-| Branch | `feat/task-001-adr-0001-cep-fallback-brasilapi` |
+| Branch | *(removida após merge)* — era `feat/task-001-adr-0001-cep-fallback-brasilapi`; trabalho atual em `main` |
 | PR | https://github.com/ricksouzaa/poc-hexagonal/pull/1 |
 | Repositório remoto | `git@github.com:ricksouzaa/poc-hexagonal.git` |
 | Última atualização deste documento | 2026-04-17 |
@@ -37,19 +37,17 @@ Este arquivo é o **ponto único de continuidade** para a **TASK-001** e para o 
 
 | Área | Estado |
 |------|--------|
-| **Implementação TASK-001** | Concluída no branch de feature: ViaCEP primária, BrasilAPI v1 só em **falha técnica**; `erro: true` ViaCEP **sem** segunda chamada; testes `AddressLocatorAdapterTest`; config Feign/timeouts. |
-| **PR** | [#1](https://github.com/ricksouzaa/poc-hexagonal/pull/1) aberto; **conflito com `main` resolvido** por merge local (`pom.xml`: `maven-enforcer-plugin` **e** `maven-release-plugin`). |
-| **`.cursor/`** | **Versionada** no Git (rules + skills); faltava antes do commit dedicado. |
-| **Documentação** | `docs/01`–`05`, PRD-001, TASK-001, ADR 0001, `docs/context/` (este arquivo); PRD §9 critérios de aceite marcados com nota (testes + homologação). |
-| **Regras de workflow** | **`docs/context/…-historico.md` obrigatório** em todo fechamento de TASK (não opcional) — ver `.cursor/rules/task-context-history.mdc`, `workflow-entrega.mdc`, `task-creation.mdc`. |
-| **README na raiz** | Foi **melhorado** numa mensagem recente; no último `git status` local o arquivo `README.md` aparecia **modificado e por commitar** — confirmar com `git status` antes de assumir que está no remoto. |
+| **Implementação TASK-001** | **Em `main`:** ViaCEP primária, BrasilAPI v1 só em **falha técnica**; `erro: true` ViaCEP **sem** segunda chamada; testes `AddressLocatorAdapterTest`; config Feign/timeouts. |
+| **PR** | [#1](https://github.com/ricksouzaa/poc-hexagonal/pull/1) **mergeado**; branch de feature **apagada** (local e `origin`). |
+| **`.cursor/`** | **Versionada** no Git (rules + skills). |
+| **Documentação** | `docs/01`–`05`, PRD-001, TASK-001, ADR 0001, `docs/context/` (este arquivo); PRD §9 com nota (testes + homologação). |
+| **Regras de workflow** | **`docs/context/…-historico.md` obrigatório** em todo fechamento de TASK — ver `.cursor/rules/task-context-history.mdc`, `workflow-entrega.mdc`, `task-creation.mdc`. |
+| **README na raiz** | Versão expandida **commitada em `main`** (pós-merge do PR). |
 
-**Próximos passos sugeridos para o time**
+**Próximos passos opcionais**
 
-1. **Commit + push** de alterações pendentes (ex.: `README.md`) se ainda não estiverem no PR.
-2. **Review** do PR #1 e merge para `main` quando aprovado.
-3. Após merge: atualizar **Status** da TASK-001 para “Concluído (merge)” se for política do repo.
-4. Smoke **E2E** / homologação (PRD RNF-01) se quiserem validação além dos testes unitários do adapter.
+1. Smoke **E2E** / homologação (PRD RNF-01), se quiserem validação além dos testes unitários do adapter.
+2. Próxima entrega: novo **PRD/TASK** + branch `feat/task-NNN-…` conforme `workflow-entrega.mdc`.
 
 ---
 

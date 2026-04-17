@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Status** | **Aprovado** — entrega concluída; PR aberto (2026-04-17); aguardando review/merge |
+| **Status** | **Concluído** — merge em `main` (2026-04-17); branch de feature removida (local e `origin`) |
 | Número da entrega | 001 |
 | Tipo | feature |
-| Branch | `feat/task-001-adr-0001-cep-fallback-brasilapi` |
+| Branch | *(mergeada e apagada)* — era `feat/task-001-adr-0001-cep-fallback-brasilapi` |
 | PRD | [PRD-001-resiliencia-consulta-cep.md](../prd/PRD-001-resiliencia-consulta-cep.md) |
 | ADR | [0001-viacep-e-alternativas-consulta-cep.md](../adr/0001-viacep-e-alternativas-consulta-cep.md) |
 | **PR aberto** | https://github.com/ricksouzaa/poc-hexagonal/pull/1 |
@@ -87,6 +87,7 @@ Implementar, atrás de **`AddressLocatorPort`**, a cadeia **ViaCEP (primária) �
 
 - Implementação validada com `mvn clean verify` (Java 21 no ambiente de verificação).
 - ADR 0001 atualizada: fallback deixa de constar como “pendente” apenas em documento.
+- Pós-merge: documentação extra em `main` (README expandido, `docs/context` robusto, regra `task-context-history` sobre transcript).
 
 ---
 
