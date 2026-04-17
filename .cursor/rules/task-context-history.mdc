@@ -42,6 +42,7 @@ alwaysApply: true
 ## Limitações honestas
 
 - O assistente **não** tem acesso automático ao arquivo interno de histórico do Cursor; por isso o documento em `docs/context/` deve **consolidar** o que ocorreu na sessão e o time pode **enriquecer** com exportação manual do chat quando precisar de arquivo completo.
+- **Transcript palavra por palavra** entre usuário e assistente **não** é gerado automaticamente dentro de `docs/context/` — o repositório guarda um **resumo operacional** (decisões, ordem dos fatos, links, pendências). Para **100% do diálogo**, use exportação do produto (Cursor / outra ferramenta) e cole ou anexe na subseção *Transcript / anexos*, ou mantenha o ficheiro exportado junto do projeto com nome acordado pelo time.
 
 ## Leitura nas tarefas seguintes
 
