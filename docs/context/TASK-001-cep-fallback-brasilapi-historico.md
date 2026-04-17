@@ -146,6 +146,6 @@ Foi implementada, atrás de **`AddressLocatorPort`**, a cadeia **ViaCEP (primár
 
 - [ ] Li a **TASK-001** e a **ADR 0001**.
 - [ ] Li **este** `historico.md` e a secção **Onde paramos**.
-- [ ] Confirmei `git status` / branch / se **README** (ou outros) falta push.
+- [ ] Confirmei `git status` em **`main`** e que não há alterações locais pendentes.
 - [ ] Abri o **PR #1** e verifiquei se está mergeável e se CI (se houver) passa.
 - [ ] Se for implementar nova task: respeitar **workflow-entrega** (TASK aprovada antes de código) e criar/atualizar **`docs/context`** ao fechar.
