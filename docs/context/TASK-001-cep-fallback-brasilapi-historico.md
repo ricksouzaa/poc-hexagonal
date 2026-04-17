@@ -89,7 +89,7 @@ Foi implementada, atrás de **`AddressLocatorPort`**, a cadeia **ViaCEP (primár
 ## Verificação e Git
 
 - **Build:** `mvn clean verify` com **JDK 21** (`pom.xml` exige `[21,)` via Enforcer). Em ambientes com Java 8 por padrão:  `JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 mvn clean verify`
-- **Branch:** `feat/task-001-adr-0001-cep-fallback-brasilapi`
+- **Branch:** entrega em `main` (branch de feature removida após merge).
 - **Commits relevantes (mensagens):** entrega TASK-001; docs PR/link PR; merge `main` + pom; chore `.cursor` + PRD/TASK; possivelmente commits posteriores (README, este histórico).
 
 ---

@@ -6,7 +6,7 @@
 | Versão | 0.1 |
 | Data | 2026-04-17 |
 | Status | **Aprovado** (2026-04-17 — autorização explícita para prosseguir) |
-| Branch | `feat/task-001-adr-0001-cep-fallback-brasilapi` |
+| Branch | `main` *(entrega via PR #1; branch de feature removida)* |
 | TASK | [TASK-001-cep-fallback-brasilapi.md](../tasks/TASK-001-cep-fallback-brasilapi.md) |
 | ADR de referência | [0001 — ViaCEP e fallback BrasilAPI v1](../adr/0001-viacep-e-alternativas-consulta-cep.md) |
 
